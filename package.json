@@ -36,6 +36,7 @@
     "test:watch": "vitest",
     "cobertura": "vitest run --coverage",
     "build": "tsc",
+    "prepare": "tsc",
     "verificar": "tsc --noEmit && vitest run",
     "prepublishOnly": "npm run verificar && npm run build"
   },
