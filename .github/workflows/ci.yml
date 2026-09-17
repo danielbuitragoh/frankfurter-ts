@@ -10,9 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # 18 es el mínimo que declara el paquete (fetch nativo); 22 es el actual.
-        # Probar solo en una versión deja pasar fallos que aparecen en la otra.
-        node: [18, 22]
+        # 20 es el minimo real: vitest 5 (rolldown) no arranca en Node 18.        # Probar solo en una versión deja pasar fallos que aparecen en la otra.
+        node: [20, 22]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
