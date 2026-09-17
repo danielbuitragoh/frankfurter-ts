@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # 18 es el mínimo que declara el paquete (fetch nativo); 22 es el actual.
+        # Probar solo en una versión deja pasar fallos que aparecen en la otra.
+        node: [18, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - name: Tipos
+        run: npx tsc --noEmit
+      - name: Pruebas
+        run: npm test
+      - name: Compilación
+        run: npm run build
+      - name: El binario arranca
+        # Si dist/cli.js no es ejecutable o le falta el shebang, esto lo caza.
+        run: node dist/cli.js --help

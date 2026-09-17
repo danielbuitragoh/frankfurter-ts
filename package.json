@@ -1,0 +1,47 @@
+{
+  "name": "frankfurter-ts",
+  "version": "0.1.0",
+  "description": "Cliente de la API de divisas Frankfurter: caché, reintentos y aritmética de dinero sin coma flotante.",
+  "author": "Daniel Buitrago",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "fx": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "divisas",
+    "exchange-rates",
+    "frankfurter",
+    "currency",
+    "forex",
+    "decimal",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielbuitragoh/frankfurter-ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "cobertura": "vitest run --coverage",
+    "build": "tsc",
+    "verificar": "tsc --noEmit && vitest run",
+    "prepublishOnly": "npm run verificar && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.3",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.1"
+  }
+}
