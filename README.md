@@ -161,3 +161,17 @@ También hay `npm run verificar`, que comprueba tipos con `tsc --noEmit` y pasa 
 ## Licencia
 
 MIT · [Daniel Buitrago](https://github.com/danielbuitragoh)
+
+
+
+---
+
+## English
+
+frankfurter-ts is a TypeScript client for the Frankfurter currency API, with a cache that obeys the server's Cache-Control header, exponential-backoff retries with full jitter, and money arithmetic that never touches a floating-point number.
+
+Money is stored as a bigint of minimal units and rounding happens exactly once, explicitly, at the end, so the classic 0.1 + 0.2 = 0.30000000000000004 problem does not exist here. The cache reads the real max-age the server sends instead of inventing a TTL, and when the API is down (its measured uptime is around 86%) the client serves the last cached rate marked as stale rather than throwing. Retries only happen for errors worth retrying, with full jitter to avoid a thundering herd, and every error is a typed class so callers can branch with instanceof instead of parsing message strings.
+
+Ships with a CLI (fx) and 59 tests that mock every network call, so the suite runs in milliseconds and tests the code, not the connection.
+
+Code and comments are in Spanish.
